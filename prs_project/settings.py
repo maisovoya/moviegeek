@@ -1,4 +1,10 @@
 import os
+import yaml
+
+
+with open("config.yaml") as file:
+    config = yaml.safe_load(file)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -10,7 +16,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2jak@usd23kz0&+kxh2%mx24mw2zw5692s-#y0s$30*9z2y2+x'
+SECRET_KEY = config["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -72,11 +78,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'moviegeek',                      
-        'USER': 'student',
-        'PASSWORD': '1234',
-        "HOST": "85.192.26.208",
-        'PORT': '5432',
+        'NAME': config["DB_NAME"],                      
+        'USER': config["DB_USER"],
+        'PASSWORD': config["DB_PASSWORD"],
+        "HOST": config["DB_HOST"],
+        'PORT': config["DB_PORT"],
     }
 }
 

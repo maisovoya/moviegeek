@@ -12,3 +12,4 @@ cluster.png
 analytics/migrations/*
 data
 myenv/
+config.yaml
